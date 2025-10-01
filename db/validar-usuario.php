@@ -1,7 +1,7 @@
 <?php
 $hostDb = "localhost";
-$nameDb = "grupo_2_avanzada";
-$userDb = "root";
+$nameDb = "";
+$userDb = "";
 $pwdDb = "";
 
 $conexDb = new mysqli(
@@ -24,7 +24,7 @@ $pwd = $_POST["pwd"];
 $sql = "select * from users where userName='$user' and password='$pwd'";
 
 $result = $conexDb->query($sql);
-if ($result->num_rows > 0) {//tiene que estar dentro del if por que se inicia si existe la sesion
+if ($result->num_rows > 0) {
     session_start();
     while ($row = $result->fetch_assoc()) {
         $_SESSION["idUser"] = $row["id"];

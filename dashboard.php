@@ -69,4 +69,4 @@ if ($conexDb->connect_error) {
     <a href="cerrar-sesion.php">Cerrar sesion</a>
 </body>
 
-</
+</html>

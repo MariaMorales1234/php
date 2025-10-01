@@ -2,8 +2,8 @@
 $id = $_GET["cod"];
 
 $hostDb = "localhost";
-$nameDb = "grupo_2_avanzada";
-$userDb = "root";
+$nameDb = "";
+$userDb = "";
 $pwdDb = "";
 
 $conexDb = new mysqli(

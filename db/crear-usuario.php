@@ -3,8 +3,8 @@ $user = $_POST["user"];
 $pwd = $_POST["pwd"];
 
 $hostDb = "localhost";
-$nameDb = "grupo_2_avanzada";
-$userDb = "root";
+$nameDb = "";
+$userDb = "";
 $pwdDb = "";
 
 $conexDb = new mysqli(

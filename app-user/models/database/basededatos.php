@@ -1,11 +1,14 @@
 <?php
+namespace App\Models\Databases;
+
+use mysqli;
+
 class GrupoAvanzadaDB
 {
     private $hostDb = "localhost";
     private $nameDb = "";
-    private $userDb = "root";
+    private $userDb = "";
     private $pwdDb = "";
-
     private $conexDb = null;
 
     public function __construct()
@@ -21,13 +24,15 @@ class GrupoAvanzadaDB
         }
     }
 
-    public function execSQL($sql){
-        return $this->conexDb->query($sql);
+    public function execSQL($sql, ...$bindParam){
+        //return $this->conexDb->query($sql);
+        $prp = $this->conexDb->prepare($sql);
+        $prp->bind_param(...$bindParam);
+        $prp->execute();
+        return $prp->get_result();
     }    
 
     public function closeDB(){
         $this->conexDb->close();
     }
-
 }
-?>
