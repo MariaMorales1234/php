@@ -27,7 +27,9 @@ class GrupoAvanzadaDB
     public function execSQL($sql, ...$bindParam){
         //return $this->conexDb->query($sql);
         $prp = $this->conexDb->prepare($sql);
-        $prp->bind_param(...$bindParam);
+        if(!empty($bindParam)){
+            $prp->$bindParam($bindParam);
+        }
         $prp->execute();
         return $prp->get_result();
     }    
