@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Entities;
 
 require __DIR__ . '/../utils/model.php';
@@ -29,10 +30,11 @@ class User extends Model
     {
         $sql = UserSQL::selectAll();
         $db = new GrupoAvanzadaDB();
+        $db->setIsSqlSelect(true);
         $result = $db->execSQL($sql);
         $rows = [];
-        if ($result->num_rows > 0){
-            while ($item = $result->fetch_assoc()){
+        if ($result->num_rows > 0) {
+            while ($item = $result->fetch_assoc()) {
                 $user = new User();
                 $user->set('id', $item['id']);
                 $user->set('userName', $item['userName']);
@@ -46,6 +48,7 @@ class User extends Model
     {
         $sql = UserSQL::selectByUserPwd();
         $db = new GrupoAvanzadaDB();
+        $db->setIsSqlSelect(true);
         $result = $db->execSQL(
             $sql,
             "ss",
@@ -64,12 +67,38 @@ class User extends Model
         }
         return $user;
     }
-    public function save(){
+
+    public function save()
+    {
         $sql = UserSQL::insertInto();
         $db = new GrupoAvanzadaDB();
         $result = $db->execSQL($sql, "ss", $this->userName, $this->password);
         return $result;
     }
-}
 
-?>
+    public function update()
+    {
+        $sql = UserSQL::update();
+        $db = new GrupoAvanzadaDB();
+        $result = $db->execSQL(
+            $sql,
+            "ssi",
+            $this->userName,
+            $this->password,
+            $this->id
+        );
+        return $result;
+    }
+
+    public function delete()
+    {
+        $sql = UserSQL::delete();
+        $db = new GrupoAvanzadaDB();
+        $result = $db->execSQL(
+            $sql,
+            "i",
+            $this->id
+        );
+        return $result;
+    }
+}

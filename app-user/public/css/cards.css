@@ -5,25 +5,29 @@
     justify-content: center;
     align-items: center;
     gap: 25px;
+    flex-wrap: wrap;
 }
+
 .card-user {
     border: 1px solid #000;
     border-radius: 15px;
-    width: 150px;
-    height: 75px;
+    width: auto;
+    height: 95px;
     box-shadow: 0px 0px 2px 5px #8c8c8c;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 64px auto;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "icon id" "icon name";
+    grid-template-areas: "icono id"
+        "icono name"
+        "icono btns";
     gap: 10px;
-    padding: 10px; 
+    padding: 10px;
 }
 
-.card-user .logo {
-    grid-area: logo;
-    height: 45px;
+.card-user .icono {
+    grid-area: icono;
+    width: 100%;
 }
 
 .card-user .id {
@@ -32,4 +36,28 @@
 
 .card-user .name {
     grid-area: name;
+}
+
+.card-user .btns {
+    grid-area: btns;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-user .btns img{
+    width: 32px;
+}
+
+.btns a, .btns button{
+    background-color: #fff;
+    border: 0px;
+    padding: 0px;
+}
+
+.card-user .btns a:hover,
+.card-user .btns button:hover{
+    border-bottom: 1px solid #000;
 }
